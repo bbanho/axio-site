@@ -78,6 +78,15 @@
     <!-- Articles List -->
     <main class="container mx-auto px-6 py-16 max-w-4xl">
         
+        <!-- Filter Bar -->
+        <div class="flex flex-wrap gap-2 mb-12" id="filter-bar">
+            <button class="filter-btn active px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-brand-primary text-white transition-all hover:bg-slate-800" data-filter="all">All</button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 transition-all hover:bg-slate-200" data-filter="architecture">Architecture</button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 transition-all hover:bg-slate-200" data-filter="security">Security</button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 transition-all hover:bg-slate-200" data-filter="hardware">Hardware</button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 transition-all hover:bg-slate-200" data-filter="vector-db">Vector DB</button>
+        </div>
+        
         <!-- Year Group -->
         <div class="mb-12">
             <h3 class="text-2xl font-bold text-slate-900 border-b border-slate-200 pb-4 mb-8">2026</h3>
@@ -157,73 +166,114 @@
 
     <!-- Interactive Scripts -->
     <script>
-        // Pagination Logic
+        // Pagination & Filter Logic
         const itemsPerPage = 5;
         const container = document.getElementById('articles-container');
         const prevBtn = document.getElementById('prev-page');
         const nextBtn = document.getElementById('next-page');
         const indicator = document.getElementById('page-indicator');
+        const filterBtns = document.querySelectorAll('.filter-btn');
         
-        // Convert NodeList to Array to handle slicing
+        // Convert NodeList to Array
         const allArticles = Array.from(container.children);
+        
         let currentPage = 1;
-        const totalPages = Math.ceil(allArticles.length / itemsPerPage);
+        let currentFilter = 'all';
+        let filteredArticles = allArticles;
+
+        function updateFilter(filter) {
+            currentFilter = filter;
+            currentPage = 1;
+            
+            // Filter logic
+            if (filter === 'all') {
+                filteredArticles = allArticles;
+            } else {
+                filteredArticles = allArticles.filter(article => {
+                    const tags = (article.dataset.tags || '').toLowerCase();
+                    return tags.includes(filter);
+                });
+            }
+            
+            // Update UI buttons
+            filterBtns.forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('active', 'bg-brand-primary', 'text-white');
+                    btn.classList.remove('bg-slate-100', 'text-slate-500');
+                } else {
+                    btn.classList.remove('active', 'bg-brand-primary', 'text-white');
+                    btn.classList.add('bg-slate-100', 'text-slate-500');
+                }
+            });
+
+            renderPage(currentPage);
+        }
 
         function renderPage(page) {
-            // Calculate slice
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
+            const totalPages = Math.ceil(filteredArticles.length / itemsPerPage) || 1;
             
-            // Hide all first
+            // Hide everything first
             allArticles.forEach(el => el.style.display = 'none');
             
-            // Show slice
-            allArticles.slice(start, end).forEach(el => el.style.display = 'block');
+            // Calculate slice of FILTERED items
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredArticles.slice(start, end);
+            
+            // Show only relevant items
+            pageItems.forEach(el => el.style.display = 'block');
             
             // Update controls
             indicator.textContent = `Página ${page} de ${totalPages}`;
             
             prevBtn.disabled = page === 1;
-            nextBtn.disabled = page === totalPages;
+            nextBtn.disabled = page >= totalPages;
             
+            // Styling controls
+            const disableClass = ['cursor-not-allowed', 'opacity-50'];
+            const enableClass = ['hover:bg-slate-50', 'text-slate-600'];
+
             if (page === 1) {
-                prevBtn.classList.add('cursor-not-allowed', 'opacity-50');
-                prevBtn.classList.remove('hover:bg-slate-50', 'text-slate-600');
+                prevBtn.classList.add(...disableClass);
+                prevBtn.classList.remove(...enableClass);
             } else {
-                prevBtn.classList.remove('cursor-not-allowed', 'opacity-50');
-                prevBtn.classList.add('hover:bg-slate-50', 'text-slate-600');
+                prevBtn.classList.remove(...disableClass);
+                prevBtn.classList.add(...enableClass);
             }
 
-            if (page === totalPages) {
-                nextBtn.classList.add('cursor-not-allowed', 'opacity-50');
-                nextBtn.classList.remove('hover:bg-slate-50', 'text-slate-600');
+            if (page >= totalPages) {
+                nextBtn.classList.add(...disableClass);
+                nextBtn.classList.remove(...enableClass);
             } else {
-                nextBtn.classList.remove('cursor-not-allowed', 'opacity-50');
-                nextBtn.classList.add('hover:bg-slate-50', 'text-slate-600');
-            }
-            
-            // Scroll to top of list if not first load
-            if (window.scrollY > 200) {
-                container.scrollIntoView({ behavior: 'smooth' });
+                nextBtn.classList.remove(...disableClass);
+                nextBtn.classList.add(...enableClass);
             }
         }
+
+        // Event Listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => updateFilter(btn.dataset.filter));
+        });
 
         prevBtn.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
                 renderPage(currentPage);
+                container.scrollIntoView({ behavior: 'smooth' });
             }
         });
 
         nextBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
             if (currentPage < totalPages) {
                 currentPage++;
                 renderPage(currentPage);
+                container.scrollIntoView({ behavior: 'smooth' });
             }
         });
 
         // Init
-        renderPage(currentPage);
+        updateFilter('all');
     </script>
 </body>
 </html>
