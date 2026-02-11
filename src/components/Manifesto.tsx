@@ -5,12 +5,12 @@ export const Manifesto = () => {
         <span className="text-blue-500 font-mono text-xs uppercase tracking-[0.3em] mb-6 block">Nossa Filosofia</span>
         <h2 className="text-3xl md:text-5xl font-serif font-medium leading-tight max-w-4xl mx-auto mb-10 text-slate-100">
           "Não alugamos inteligência; nós a construímos. 
-          Em um mundo de APIs efêmeras, entregamos sistemas que <span className="text-blue-400 italic">jamais param</span>."
+          Em um mundo de APIs efêmeras, entregamos sistemas que <span className="text-blue-400 italic">aprendem e persistem</span>."
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          A verdadeira autonomia não é sobre isolamento, é sobre confiabilidade. 
-          Projetamos arquiteturas onde a inteligência reside no núcleo da operação, 
-          garantindo soberania de dados e execução contínua, independente de terceiros.
+          A verdadeira autonomia não é sobre isolamento, é sobre integração adaptativa. 
+          Projetamos arquiteturas onde a inteligência reside no núcleo, 
+          garantindo que o sistema se torne mais estável e capaz a cada interação.
         </p>
       </div>
     </section>
