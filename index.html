@@ -175,19 +175,18 @@
     </section>
 
     <!-- Research Log -->
-    <section class="py-24 bg-slate-50 border-b border-slate-200">
+    <section class="py-24 bg-slate-50 border-b border-slate-200 relative">
         <div class="container mx-auto px-6 reveal">
             <div class="flex justify-between items-end mb-12">
                 <div>
                     <span class="text-brand-accent font-bold tracking-widest uppercase text-sm block mb-2">P&D Interno</span>
                     <h2 class="text-3xl font-bold text-brand-primary">Research Log</h2>
                 </div>
-                <a href="#" class="text-sm font-semibold text-slate-500 hover:text-brand-accent transition-colors hidden md:block">Ver arquivo completo &rarr;</a>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Log Item 1 -->
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group cursor-pointer">
+                <article class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group cursor-pointer research-card" data-id="1">
                     <span class="text-xs font-mono text-slate-400 mb-2 block">11 FEV 2026</span>
                     <h3 class="text-lg font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">Protocolo de Memória Híbrida v2</h3>
                     <p class="text-sm text-slate-600 mb-4">
@@ -197,10 +196,10 @@
                         <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Architecture</span>
                         <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Vector DB</span>
                     </div>
-                </div>
+                </article>
 
                 <!-- Log Item 2 -->
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group cursor-pointer">
+                <article class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group cursor-pointer research-card" data-id="2">
                     <span class="text-xs font-mono text-slate-400 mb-2 block">06 FEV 2026</span>
                     <h3 class="text-lg font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">Termodinâmica de Agentes</h3>
                     <p class="text-sm text-slate-600 mb-4">
@@ -210,10 +209,10 @@
                         <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Hardware</span>
                         <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Stability</span>
                     </div>
-                </div>
+                </article>
 
                 <!-- Log Item 3 -->
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group cursor-pointer">
+                <article class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group cursor-pointer research-card" data-id="3">
                     <span class="text-xs font-mono text-slate-400 mb-2 block">01 FEV 2026</span>
                     <h3 class="text-lg font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">Soberania de Identidade (OAuth)</h3>
                     <p class="text-sm text-slate-600 mb-4">
@@ -223,10 +222,26 @@
                         <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Security</span>
                         <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Identity</span>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
+
+    <!-- Article Modal Overlay -->
+    <div id="modal-overlay" class="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div id="modal-content" class="bg-white w-full max-w-2xl max-h-[85vh] rounded-2xl shadow-2xl overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 relative">
+            <button id="modal-close" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-colors z-10">
+                <i class="fa-solid fa-times"></i>
+            </button>
+            <div class="p-8 md:p-12">
+                <span id="modal-date" class="text-xs font-mono text-slate-400 mb-3 block uppercase tracking-wider"></span>
+                <h2 id="modal-title" class="text-3xl font-bold text-slate-900 mb-6 leading-tight"></h2>
+                <div id="modal-body" class="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-4">
+                    <!-- Content injected via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Active Operations (Projects) -->
     <section id="projects" class="py-24 bg-white">
@@ -451,6 +466,91 @@
         resize();
         initParticles();
         animateNetwork();
+
+        // Modal Logic
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+        const modalClose = document.getElementById('modal-close');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDate = document.getElementById('modal-date');
+        const modalBody = document.getElementById('modal-body');
+        const researchCards = document.querySelectorAll('.research-card');
+
+        // Mock Data for Articles
+        const articles = {
+            '1': {
+                title: 'Protocolo de Memória Híbrida v2',
+                date: '11 FEV 2026',
+                content: `
+                    <p>A memória é a fundação da autonomia. Sem persistência, um agente é apenas um processador de texto glorificado. O desafio da versão 1.0 era a latência: consultar o banco vetorial para cada interação adicionava 800ms ao ciclo de resposta.</p>
+                    <p><strong>A Solução v2:</strong> Implementamos um sistema de <em>prefetching</em> preditivo. Enquanto o usuário digita, o córtex analisa o contexto semântico e pré-carrega vetores relevantes para a memória RAM (hot-tier). O armazenamento frio (Qdrant em disco) é acessado apenas para miss-matches.</p>
+                    <p>Resultado: Latência reduzida para 120ms em 90% das queries. A sensação de conversa agora é instantânea, mas com profundidade enciclopédica.</p>
+                `
+            },
+            '2': {
+                title: 'Termodinâmica de Agentes',
+                date: '06 FEV 2026',
+                content: `
+                    <p>Rodar modelos de 7B ou 13B parâmetros localmente (On-Edge) tem um custo físico: calor. Durante sessões de raciocínio profundo ("Deep Thinking"), a GPU GTX 1660 Super atingiu 86°C, desencadeando <em>thermal throttling</em>.</p>
+                    <p>Isso revelou uma vulnerabilidade crítica: a inteligência pode literalmente derreter o hardware se não for regulada. Desenvolvemos um "Watchdog Termodinâmico" que monitora a temperatura do die a cada 500ms.</p>
+                    <p>Se a temperatura cruza 80°C, o agente entra em modo de "reflexão" (pausa a inferência) ou reduz o tamanho do contexto, priorizando a sobrevivência do hardware sobre a velocidade da resposta.</p>
+                `
+            },
+            '3': {
+                title: 'Soberania de Identidade (OAuth)',
+                date: '01 FEV 2026',
+                content: `
+                    <p>Integrar agentes autônomos em ecossistemas corporativos (Google Workspace, Slack) é um pesadelo de segurança. O modelo padrão assume um humano com um navegador clicando em "Autorizar".</p>
+                    <p>Para um agente headless rodando em servidor, o fluxo OAuth2 padrão falha. Tentativas de emular navegadores (Puppeteer) são frágeis e frequentemente bloqueadas.</p>
+                    <p>Nossa abordagem migrou para fluxos OOB (Out-of-Band) manuais ou túneis SSH temporários para capturar o callback. A lição: a infraestrutura de identidade da web 2.0 não foi feita para habitantes da web 3.0 (agentes).</p>
+                `
+            }
+        };
+
+        function openModal(id) {
+            const article = articles[id];
+            if (!article) return;
+
+            modalTitle.textContent = article.title;
+            modalDate.textContent = article.date;
+            modalBody.innerHTML = article.content;
+
+            modalOverlay.classList.remove('hidden');
+            // Trigger reflow
+            void modalOverlay.offsetWidth;
+            
+            modalOverlay.classList.remove('opacity-0');
+            modalContent.classList.remove('opacity-0', 'scale-95');
+            modalContent.classList.add('scale-100');
+            
+            document.body.style.overflow = 'hidden'; // Prevent scrolling bg
+        }
+
+        function closeModal() {
+            modalOverlay.classList.add('opacity-0');
+            modalContent.classList.add('opacity-0', 'scale-95');
+            modalContent.classList.remove('scale-100');
+            
+            setTimeout(() => {
+                modalOverlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        researchCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-id');
+                openModal(id);
+            });
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
 
         // Terminal Typewriter Effect
         const commands = [
