@@ -3,9 +3,11 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches:
+      - main
       - react-version
   pull_request:
     branches:
+      - main
       - react-version
 
 jobs:
@@ -30,4 +32,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: e5213e13e4f8067e22f4450f8a3663a4
-          command: pages deploy dist --project-name=axio-eng
+          projectName: axio-eng
+          directory: dist
