@@ -75,3 +75,27 @@ export const researchArticles = [
     `
   }
 ];
+
+export const projects = [
+  {
+    id: 'intraclinica',
+    title: 'Intraclinica',
+    type: 'SaaS',
+    description: 'Desenvolvimento de ecossistema de gestão clínica focado em integridade de dados e alta disponibilidade. Migração de arquitetura legada para sistema reativo distribuído.',
+    technologies: ['Angular 17+', 'NgRx Store', 'NestJS', 'PostgreSQL'],
+    status: [
+      { text: 'Migração Frontend (Concluída)', icon: 'check-circle', color: 'green' },
+      { text: 'Refatoração Backend', icon: 'spinner', color: 'blue', spin: true },
+      { text: 'Módulo de IA Diagnóstica', icon: 'circle', color: 'slate' }
+    ]
+  },
+  {
+    id: 'cortical-stack',
+    title: 'Cortical Stack',
+    type: 'R&D Interno',
+    description: 'Infraestrutura proprietária de memória híbrida para agentes autônomos. Combina busca semântica (vetores) com armazenamento físico soberano, eliminando dependência de nuvem.',
+    technologies: ['Qdrant Vector DB', 'Ollama Local', 'Markdown'],
+    memoryPoints: 262,
+    isDark: true
+  }
+];

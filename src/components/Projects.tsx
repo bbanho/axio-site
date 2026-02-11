@@ -1,5 +1,23 @@
 import { projects } from '../data/content';
 
+interface ProjectStatus {
+  text: string;
+  icon: string;
+  color: string;
+  spin?: boolean;
+}
+
+interface Project {
+  id: string;
+  title: string;
+  type: string;
+  description: string;
+  technologies: string[];
+  isDark?: boolean;
+  status?: ProjectStatus[];
+  memoryPoints?: number;
+}
+
 export const Projects = () => {
   return (
     <section id="projects" className="py-24 bg-white">
@@ -10,7 +28,7 @@ export const Projects = () => {
         </div>
 
         <div className="max-w-5xl mx-auto space-y-12">
-          {projects.map((project) => (
+          {(projects as Project[]).map((project) => (
             <div key={project.id} className={`group relative rounded-2xl shadow-sm border overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 reveal ${project.isDark ? 'bg-slate-900 text-white border-slate-800' : 'bg-white border-slate-200'}`}>
               {!project.isDark && (
                 <div className="absolute top-0 left-0 w-1 h-full bg-green-500 transition-all group-hover:w-2"></div>
@@ -35,7 +53,7 @@ export const Projects = () => {
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
+                    {project.technologies.map((tech: string) => (
                       <span key={tech} className={`px-3 py-1 text-xs font-mono font-medium rounded-md transition-colors cursor-default ${
                         project.isDark 
                           ? 'bg-slate-800 text-purple-200 border border-purple-500/20 hover:border-purple-500/50' 
@@ -51,7 +69,7 @@ export const Projects = () => {
                   <div className="md:w-1/3 flex flex-col justify-center border-l border-slate-100 pl-0 md:pl-8 mt-6 md:mt-0 pt-6 md:pt-0 border-t md:border-t-0">
                     <h4 className="font-bold text-sm uppercase mb-4">Status Atual</h4>
                     <ul className="space-y-3 text-sm">
-                      {project.status.map((item, index) => (
+                      {project.status.map((item: ProjectStatus, index: number) => (
                         <li key={index} className="flex items-start gap-2">
                           <i className={`fa-solid fa-${item.icon} text-${item.color}-500 mt-1 ${item.spin ? 'fa-spin-pulse' : ''}`}></i>
                           <span className={project.isDark ? 'text-slate-300' : 'text-slate-600'}>{item.text}</span>
