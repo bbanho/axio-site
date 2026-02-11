@@ -102,7 +102,7 @@
             <div class="md:w-3/5 animate-fade-in-up">
                 <div class="inline-flex items-center gap-2 px-3 py-1 mb-8 border border-blue-500/30 bg-blue-500/10 rounded-full text-blue-400 text-xs font-bold tracking-widest uppercase hover:bg-blue-500/20 transition-colors cursor-default">
                     <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                    Sistemas Autônomos &bull; HealthTech
+                    Sistemas Críticos &bull; Alta Disponibilidade
                 </div>
                 
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
@@ -155,6 +155,79 @@
         </div>
     </section>
 
+    <!-- Manifesto Section -->
+    <section class="py-24 bg-brand-primary text-white border-b border-slate-800 relative overflow-hidden">
+        <!-- Interactive Network Canvas (Background) -->
+        <canvas id="network-canvas" class="absolute inset-0 w-full h-full opacity-20"></canvas>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center reveal">
+            <span class="text-blue-500 font-mono text-xs uppercase tracking-[0.3em] mb-6 block">Nossa Filosofia</span>
+            <h2 class="text-3xl md:text-5xl font-serif font-medium leading-tight max-w-4xl mx-auto mb-10 text-slate-100">
+                "Não alugamos inteligência; nós a construímos. 
+                Em um mundo de APIs efêmeras, entregamos sistemas que <span class="text-blue-400 italic">jamais param</span>."
+            </h2>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                A verdadeira autonomia não é sobre isolamento, é sobre confiabilidade. 
+                Projetamos arquiteturas onde a inteligência reside no núcleo da operação, 
+                garantindo soberania de dados e execução contínua, independente de terceiros.
+            </p>
+        </div>
+    </section>
+
+    <!-- Research Log -->
+    <section class="py-24 bg-slate-50 border-b border-slate-200">
+        <div class="container mx-auto px-6 reveal">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <span class="text-brand-accent font-bold tracking-widest uppercase text-sm block mb-2">P&D Interno</span>
+                    <h2 class="text-3xl font-bold text-brand-primary">Research Log</h2>
+                </div>
+                <a href="#" class="text-sm font-semibold text-slate-500 hover:text-brand-accent transition-colors hidden md:block">Ver arquivo completo &rarr;</a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Log Item 1 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group cursor-pointer">
+                    <span class="text-xs font-mono text-slate-400 mb-2 block">11 FEV 2026</span>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">Protocolo de Memória Híbrida v2</h3>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Implementação de vector-store local (Qdrant) em paralelo com inferência on-edge. Redução de latência em 40%.
+                    </p>
+                    <div class="flex gap-2">
+                        <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Architecture</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Vector DB</span>
+                    </div>
+                </div>
+
+                <!-- Log Item 2 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group cursor-pointer">
+                    <span class="text-xs font-mono text-slate-400 mb-2 block">06 FEV 2026</span>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">Termodinâmica de Agentes</h3>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Estudo sobre o impacto térmico de raciocínio contínuo em hardware local. Desenvolvimento de watchdogs de temperatura.
+                    </p>
+                    <div class="flex gap-2">
+                        <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Hardware</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Stability</span>
+                    </div>
+                </div>
+
+                <!-- Log Item 3 -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group cursor-pointer">
+                    <span class="text-xs font-mono text-slate-400 mb-2 block">01 FEV 2026</span>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">Soberania de Identidade (OAuth)</h3>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Desafios e soluções para autenticação de agentes autônomos em ecossistemas corporativos legados.
+                    </p>
+                    <div class="flex gap-2">
+                        <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Security</span>
+                        <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Identity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Active Operations (Projects) -->
     <section id="projects" class="py-24 bg-white">
         <div class="container mx-auto px-6 reveal">
@@ -171,7 +244,7 @@
                         <div class="md:w-2/3">
                             <div class="flex items-center gap-3 mb-4">
                                 <h3 class="text-2xl font-bold text-slate-900">Intraclinica</h3>
-                                <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase border border-green-200">HealthTech</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase border border-green-200">SaaS</span>
                             </div>
                             <p class="text-slate-600 text-lg mb-6 leading-relaxed">
                                 Desenvolvimento de ecossistema de gestão clínica focado em integridade de dados e alta disponibilidade. 
@@ -298,6 +371,87 @@
 
     <!-- Interactive Scripts -->
     <script>
+        // Network Canvas Animation
+        const canvas = document.getElementById('network-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = canvas.offsetWidth;
+            height = canvas.height = canvas.offsetHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = 'rgba(59, 130, 246, 0.5)'; // Blue-500
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 40; i++) { // Number of nodes
+                particles.push(new Particle());
+            }
+        }
+
+        function animateNetwork() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Draw connections
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i < particles.length; i++) {
+                let p1 = particles[i];
+                p1.update();
+                p1.draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dx = p1.x - p2.x;
+                    let dy = p1.y - p2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 150) {
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.2 - dist/150 * 0.2})`;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateNetwork);
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            initParticles();
+        });
+        
+        // Init Network
+        resize();
+        initParticles();
+        animateNetwork();
+
         // Terminal Typewriter Effect
         const commands = [
             { text: 'initiating_core_sequence...', delay: 50 },
