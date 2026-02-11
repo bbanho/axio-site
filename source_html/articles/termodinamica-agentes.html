@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Termodinâmica de Agentes | Axio Research</title>
+    
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=2">
+    <link rel="shortcut icon" href="../favicon.svg?v=2">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Merriweather', 'serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              brand: {
+                primary: '#0f172a',
+                accent: '#3b82f6',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Nav -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 bg-brand-primary rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fa-solid fa-layer-group text-white text-sm"></i>
+                </div>
+                <span class="text-lg font-extrabold tracking-tight text-slate-900">AXIO</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="/research.html" class="text-sm font-semibold text-slate-600 hover:text-brand-accent transition-colors">← Voltar para Research</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="pt-32 pb-16 px-6 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="flex items-center justify-center gap-3 mb-6 text-xs font-mono uppercase tracking-widest text-slate-500">
+                <span>Hardware</span>
+                <span class="text-slate-300">•</span>
+                <span>Stability</span>
+                <span class="text-slate-300">•</span>
+                <span>06 FEV 2026</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-8 leading-tight">
+                Termodinâmica de Agentes: O Custo Físico da Inferência Local
+            </h1>
+            <div class="flex items-center justify-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div class="text-left">
+                    <div class="text-sm font-bold text-slate-900">Axio Core Team</div>
+                    <div class="text-xs text-slate-500">Engenharia de Hardware</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <article class="max-w-3xl mx-auto px-6 py-16 font-serif text-lg leading-loose text-slate-700">
+        <p class="mb-8 first-letter:text-5xl first-letter:font-bold first-letter:text-slate-900 first-letter:mr-1 first-letter:float-left">
+            A nuvem abstrai o calor. Quando você usa a API da OpenAI, você não sente o servidor derretendo. Mas na computação <em>Local-First</em>, a física é implacável.
+        </p>
+        
+        <p class="mb-8">
+            No dia 6 de fevereiro, durante um ciclo de "Deep Thinking" (raciocínio em cadeia) usando um modelo 7B quantizado, nossa infraestrutura de desenvolvimento (baseada em GPU consumer GTX 1660 Super) atingiu um ponto crítico.
+        </p>
+
+        <h2 class="text-2xl font-sans font-bold text-slate-900 mt-12 mb-6">O Incidente dos 86°C</h2>
+        
+        <p class="mb-8">
+            O agente entrou em um loop recursivo de auto-correção de código. A utilização da GPU cravou em 100% por 12 minutos contínuos. O sistema de resfriamento padrão não deu conta, e a temperatura do die atingiu <strong>86°C</strong>, disparando o <em>thermal throttling</em> do driver da NVIDIA.
+        </p>
+        
+        <p class="mb-8">
+            O resultado imediato foi uma queda de performance de 40 t/s para 8 t/s, tornando o agente "lento" e errático. Mas a lição foi mais profunda: <strong>a inteligência autônoma é limitada pela dissipação de calor.</strong>
+        </p>
+
+        <div class="bg-red-50 border-l-4 border-red-500 p-6 my-8 rounded-r-lg">
+            <p class="text-red-800 italic font-sans font-medium">
+                "Um agente soberano deve ser capaz de perceber sua própria temperatura e modular seu pensamento para garantir sua sobrevivência física."
+            </p>
+        </div>
+
+        <h2 class="text-2xl font-sans font-bold text-slate-900 mt-12 mb-6">Implementando Watchdogs Térmicos</h2>
+        
+        <p class="mb-8">
+            Não podemos confiar apenas no driver da placa de vídeo. Precisamos que o *agente* saiba que está quente. Desenvolvemos um módulo em Node.js que consulta o `nvidia-smi` a cada 2 segundos.
+        </p>
+
+        <div class="bg-slate-900 text-slate-300 p-6 rounded-xl font-mono text-sm mb-8 overflow-x-auto border border-slate-700 shadow-lg">
+            <pre><code>// Thermal Watchdog Logic
+const temp = await getGpuTemp();
+if (temp > 80) {
+  agent.setState('COOLING_DOWN');
+  await sleep(5000); // Pausa cognitiva
+}</code></pre>
+        </div>
+
+        <p class="mb-8">
+            Agora, se a temperatura cruza o limiar de 80°C, o agente voluntariamente entra em um estado de "pausa reflexiva". Ele para de gerar tokens, espera os fans dissiparem o calor e retoma o trabalho. Isso introduz uma <strong>biologia sintética</strong> no sistema: ciclos de esforço e descanso ditados pelo corpo físico do hardware.
+        </p>
+
+        <hr class="border-t border-slate-200 my-16 w-24 mx-auto">
+
+        <p class="italic text-slate-500 text-center font-sans">
+            "A verdadeira autonomia respeita os limites da matéria."
+        </p>
+    </article>
+
+    <!-- Footer -->
+    <footer class="bg-brand-primary text-slate-400 py-12 border-t border-slate-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-xs font-mono opacity-50">
+                &copy; 2026 Axiomatic Engineering.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research Log | Axiomatic Engineering</title>
+    <meta name="description" content="Arquivo técnico de pesquisa e desenvolvimento da Axiomatic Engineering." />
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+    <link rel="shortcut icon" href="favicon.svg?v=2">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              brand: {
+                primary: '#0f172a',    // Slate 900
+                secondary: '#1e293b',  // Slate 800
+                accent: '#3b82f6',     // Blue 500
+                surface: '#ffffff',
+                text: '#334155',       // Slate 700
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-brand-primary/95 backdrop-blur-md border-b border-slate-800 text-white transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-brand-accent rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:rotate-12 transition-transform duration-300">
+                    <i class="fa-solid fa-layer-group text-white text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-extrabold tracking-tight leading-none group-hover:text-blue-400 transition-colors">AXIO</span>
+                    <span class="text-[0.7rem] font-bold tracking-[0.25em] uppercase text-slate-400 leading-none mt-0.5">Engineering</span>
+                </div>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="/#projects" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors">Operações</a>
+                <a href="/research.html" class="text-sm font-semibold text-white border-b-2 border-blue-500">Pesquisa</a>
+                <a href="/#contact" class="px-5 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold text-sm transition-all border border-white/10">
+                    Contato
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-brand-primary text-white pt-32 pb-20 border-b border-slate-800">
+        <div class="container mx-auto px-6">
+            <span class="text-blue-500 font-mono text-xs uppercase tracking-[0.2em] mb-4 block">Arquivo Técnico</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Research Log</h1>
+            <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">
+                Documentação contínua de descobertas, protocolos arquiteturais e notas de engenharia do laboratório da Axiomatic Engineering.
+            </p>
+        </div>
+    </header>
+
+    <!-- Articles List -->
+    <main class="container mx-auto px-6 py-16 max-w-4xl">
+        
+        <!-- Filter Bar -->
+        <div class="flex flex-wrap gap-2 mb-12" id="filter-bar">
+            <button class="filter-btn active px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-brand-primary text-white transition-all hover:bg-slate-800" data-filter="all">All</button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 transition-all hover:bg-slate-200" data-filter="architecture">Architecture</button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 transition-all hover:bg-slate-200" data-filter="security">Security</button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 transition-all hover:bg-slate-200" data-filter="hardware">Hardware</button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide bg-slate-100 text-slate-500 transition-all hover:bg-slate-200" data-filter="vector-db">Vector DB</button>
+        </div>
+        
+        <!-- Year Group -->
+        <div class="mb-12">
+            <h3 class="text-2xl font-bold text-slate-900 border-b border-slate-200 pb-4 mb-8">2026</h3>
+            
+            <div class="space-y-8">
+                <!-- Article Item -->
+                <a href="articles/zero-trust-memory.html" class="block group cursor-pointer hover:bg-white hover:shadow-sm p-6 -mx-6 rounded-xl transition-all border border-transparent hover:border-slate-100">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-2">
+                        <span class="text-sm font-mono text-slate-400 whitespace-nowrap">11 FEV</span>
+                        <h2 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">Zero-Trust Memory: Quarentena Cognitiva</h2>
+                    </div>
+                    <div class="md:pl-24">
+                        <p class="text-slate-600 mb-4 leading-relaxed">
+                            Proposta de arquitetura de segurança para proteção contra "Vector Poisoning". Implementação de camadas de quarentena e auditoria noturna antes da gravação permanente.
+                        </p>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Security</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Cognition</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article Item -->
+                <a href="articles/protocolo-hibrido-v2.html" class="block group cursor-pointer hover:bg-white hover:shadow-sm p-6 -mx-6 rounded-xl transition-all border border-transparent hover:border-slate-100">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-2">
+                        <span class="text-sm font-mono text-slate-400 whitespace-nowrap">11 FEV</span>
+                        <h2 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">Protocolo de Memória Híbrida v2</h2>
+                    </div>
+                    <div class="md:pl-24">
+                        <p class="text-slate-600 mb-4 leading-relaxed">
+                            Análise de performance da implementação Qdrant + Ollama. Detalhes sobre o mecanismo de prefetching semântico para redução de latência em inferência local.
+                        </p>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Architecture</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Vector DB</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article Item -->
+                <a href="articles/termodinamica-agentes.html" class="block group cursor-pointer hover:bg-white hover:shadow-sm p-6 -mx-6 rounded-xl transition-all border border-transparent hover:border-slate-100">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-2">
+                        <span class="text-sm font-mono text-slate-400 whitespace-nowrap">06 FEV</span>
+                        <h2 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">Termodinâmica de Agentes</h2>
+                    </div>
+                    <div class="md:pl-24">
+                        <p class="text-slate-600 mb-4 leading-relaxed">
+                            Relatório de incidente térmico em GPU GTX 1660 Super. Definição de limites operacionais e implementação de watchdogs de software para throttling preventivo.
+                        </p>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Hardware</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Stability</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article Item -->
+                <a href="articles/soberania-identidade.html" class="block group cursor-pointer hover:bg-white hover:shadow-sm p-6 -mx-6 rounded-xl transition-all border border-transparent hover:border-slate-100">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-2">
+                        <span class="text-sm font-mono text-slate-400 whitespace-nowrap">01 FEV</span>
+                        <h2 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">Soberania de Identidade (OAuth)</h2>
+                    </div>
+                    <div class="md:pl-24">
+                        <p class="text-slate-600 mb-4 leading-relaxed">
+                            Estudo de caso sobre integração Google Workspace via CLI em ambientes remotos. Limitações de Redirect URI e soluções OOB.
+                        </p>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Security</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase font-bold rounded">Identity</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Pagination & Filter Logic
+        const itemsPerPage = 5;
+        const container = document.getElementById('articles-container');
+        const prevBtn = document.getElementById('prev-page');
+        const nextBtn = document.getElementById('next-page');
+        const indicator = document.getElementById('page-indicator');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        // Convert NodeList to Array
+        const allArticles = Array.from(container.children);
+        
+        let currentPage = 1;
+        let currentFilter = 'all';
+        let filteredArticles = allArticles;
+
+        function updateFilter(filter) {
+            currentFilter = filter;
+            currentPage = 1;
+            
+            // Filter logic
+            if (filter === 'all') {
+                filteredArticles = allArticles;
+            } else {
+                filteredArticles = allArticles.filter(article => {
+                    const tags = (article.dataset.tags || '').toLowerCase();
+                    return tags.includes(filter);
+                });
+            }
+            
+            // Update UI buttons
+            filterBtns.forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('active', 'bg-brand-primary', 'text-white');
+                    btn.classList.remove('bg-slate-100', 'text-slate-500');
+                } else {
+                    btn.classList.remove('active', 'bg-brand-primary', 'text-white');
+                    btn.classList.add('bg-slate-100', 'text-slate-500');
+                }
+            });
+
+            renderPage(currentPage);
+        }
+
+        function renderPage(page) {
+            const totalPages = Math.ceil(filteredArticles.length / itemsPerPage) || 1;
+            
+            // Hide everything first
+            allArticles.forEach(el => el.style.display = 'none');
+            
+            // Calculate slice of FILTERED items
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredArticles.slice(start, end);
+            
+            // Show only relevant items
+            pageItems.forEach(el => el.style.display = 'block');
+            
+            // Update controls
+            indicator.textContent = `Página ${page} de ${totalPages}`;
+            
+            prevBtn.disabled = page === 1;
+            nextBtn.disabled = page >= totalPages;
+            
+            // Styling controls
+            const disableClass = ['cursor-not-allowed', 'opacity-50'];
+            const enableClass = ['hover:bg-slate-50', 'text-slate-600'];
+
+            if (page === 1) {
+                prevBtn.classList.add(...disableClass);
+                prevBtn.classList.remove(...enableClass);
+            } else {
+                prevBtn.classList.remove(...disableClass);
+                prevBtn.classList.add(...enableClass);
+            }
+
+            if (page >= totalPages) {
+                nextBtn.classList.add(...disableClass);
+                nextBtn.classList.remove(...enableClass);
+            } else {
+                nextBtn.classList.remove(...disableClass);
+                nextBtn.classList.add(...enableClass);
+            }
+        }
+
+        // Event Listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => updateFilter(btn.dataset.filter));
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPage(currentPage);
+                container.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderPage(currentPage);
+                container.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Init
+        updateFilter('all');
+    </script>
+</body>
+</html>
