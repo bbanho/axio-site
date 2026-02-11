@@ -155,14 +155,75 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-brand-primary text-slate-400 py-12 border-t border-slate-800">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-xs font-mono opacity-50">
-                &copy; 2026 Axiomatic Engineering.
-            </p>
-        </div>
-    </footer>
+    <!-- Interactive Scripts -->
+    <script>
+        // Pagination Logic
+        const itemsPerPage = 5;
+        const container = document.getElementById('articles-container');
+        const prevBtn = document.getElementById('prev-page');
+        const nextBtn = document.getElementById('next-page');
+        const indicator = document.getElementById('page-indicator');
+        
+        // Convert NodeList to Array to handle slicing
+        const allArticles = Array.from(container.children);
+        let currentPage = 1;
+        const totalPages = Math.ceil(allArticles.length / itemsPerPage);
 
+        function renderPage(page) {
+            // Calculate slice
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            
+            // Hide all first
+            allArticles.forEach(el => el.style.display = 'none');
+            
+            // Show slice
+            allArticles.slice(start, end).forEach(el => el.style.display = 'block');
+            
+            // Update controls
+            indicator.textContent = `Página ${page} de ${totalPages}`;
+            
+            prevBtn.disabled = page === 1;
+            nextBtn.disabled = page === totalPages;
+            
+            if (page === 1) {
+                prevBtn.classList.add('cursor-not-allowed', 'opacity-50');
+                prevBtn.classList.remove('hover:bg-slate-50', 'text-slate-600');
+            } else {
+                prevBtn.classList.remove('cursor-not-allowed', 'opacity-50');
+                prevBtn.classList.add('hover:bg-slate-50', 'text-slate-600');
+            }
+
+            if (page === totalPages) {
+                nextBtn.classList.add('cursor-not-allowed', 'opacity-50');
+                nextBtn.classList.remove('hover:bg-slate-50', 'text-slate-600');
+            } else {
+                nextBtn.classList.remove('cursor-not-allowed', 'opacity-50');
+                nextBtn.classList.add('hover:bg-slate-50', 'text-slate-600');
+            }
+            
+            // Scroll to top of list if not first load
+            if (window.scrollY > 200) {
+                container.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPage(currentPage);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderPage(currentPage);
+            }
+        });
+
+        // Init
+        renderPage(currentPage);
+    </script>
 </body>
 </html>
