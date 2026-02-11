@@ -28,9 +28,10 @@ jobs:
         run: npm run build
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: e5213e13e4f8067e22f4450f8a3663a4
           projectName: axio-eng
           directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
