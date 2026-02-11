@@ -70,21 +70,22 @@
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-accent selection:text-white">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-brand-primary/95 backdrop-blur-md border-b border-slate-800 text-white transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 border-b border-transparent">
+        <div class="absolute inset-0 bg-brand-primary/0 backdrop-blur-[0px] transition-all duration-300" id="navbar-bg"></div>
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center relative z-10">
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:rotate-12 transition-transform duration-300">
                     <i class="fa-solid fa-layer-group text-white text-sm"></i>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-lg font-extrabold tracking-tight leading-none group-hover:text-blue-400 transition-colors">AXIO</span>
+                    <span class="text-lg font-extrabold tracking-tight leading-none text-white group-hover:text-blue-400 transition-colors">AXIO</span>
                     <span class="text-[0.6rem] font-bold tracking-[0.2em] uppercase text-slate-400 leading-none">Engineering</span>
                 </div>
             </a>
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#projects" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-500 after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Operações</a>
                 <a href="#lab" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-500 after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Laboratório</a>
-                <a href="#contact" class="px-5 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold text-sm transition-all border border-white/10 hover:border-white/30 hover:shadow-lg hover:scale-105 active:scale-95">
+                <a href="#contact" class="px-5 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold text-sm transition-all border border-white/10 hover:border-white/30 hover:shadow-lg hover:scale-105 active:scale-95 backdrop-blur-md">
                     Contato
                 </a>
             </div>
@@ -105,8 +106,8 @@
                 </div>
                 
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
-                    Engenharia de<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Alta Precisão.</span>
+                    Arquitetura de<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Inteligência Autônoma.</span>
                 </h1>
                 
                 <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-xl leading-relaxed">
@@ -384,7 +385,26 @@
             });
         }
 
-        // Scroll Reveal Animation
+        // Scroll Reveal Animation & Navbar Scroll Logic
+        const navbar = document.getElementById('navbar');
+        const navbarBg = document.getElementById('navbar-bg');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                // Scrolled state (Glassmorphism)
+                navbarBg.classList.remove('bg-brand-primary/0', 'backdrop-blur-[0px]');
+                navbarBg.classList.add('bg-brand-primary/80', 'backdrop-blur-md');
+                navbar.classList.add('border-slate-800');
+                navbar.classList.remove('border-transparent');
+            } else {
+                // Top state (Transparent)
+                navbarBg.classList.add('bg-brand-primary/0', 'backdrop-blur-[0px]');
+                navbarBg.classList.remove('bg-brand-primary/80', 'backdrop-blur-md');
+                navbar.classList.add('border-transparent');
+                navbar.classList.remove('border-slate-800');
+            }
+        });
+
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
