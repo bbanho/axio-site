@@ -30,7 +30,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: e5213e13e4f8067e22f4450f8a3663a4
-          projectName: axio-eng
-          directory: dist
-          # Optional: Enable this to allow the action to create a deployment for each commit
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy dist --project-name=axio-eng
