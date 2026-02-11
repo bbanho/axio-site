@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,6 +33,7 @@
             },
             animation: {
               'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
               fadeInUp: {
@@ -45,6 +46,24 @@
       }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-accent selection:text-white">
 
@@ -52,18 +71,18 @@
     <nav class="fixed w-full z-50 bg-brand-primary/95 backdrop-blur-md border-b border-slate-800 text-white transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:rotate-12 transition-transform">
+                <div class="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:rotate-12 transition-transform duration-300">
                     <i class="fa-solid fa-layer-group text-white text-sm"></i>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-lg font-extrabold tracking-tight leading-none">AXIO</span>
+                    <span class="text-lg font-extrabold tracking-tight leading-none group-hover:text-blue-400 transition-colors">AXIO</span>
                     <span class="text-[0.6rem] font-bold tracking-[0.2em] uppercase text-slate-400 leading-none">Engineering</span>
                 </div>
             </a>
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#projects" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors">Operações</a>
-                <a href="#lab" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors">Laboratório</a>
-                <a href="#contact" class="px-5 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold text-sm transition-all border border-white/10">
+                <a href="#projects" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-500 after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Operações</a>
+                <a href="#lab" class="text-sm font-semibold text-slate-300 hover:text-white transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-500 after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Laboratório</a>
+                <a href="#contact" class="px-5 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold text-sm transition-all border border-white/10 hover:border-white/30 hover:shadow-lg hover:scale-105 active:scale-95">
                     Contato
                 </a>
             </div>
@@ -78,7 +97,7 @@
         
         <div class="container mx-auto px-6 relative z-10 text-center md:text-left flex flex-col md:flex-row items-center gap-16">
             <div class="md:w-3/5 animate-fade-in-up">
-                <div class="inline-flex items-center gap-2 px-3 py-1 mb-8 border border-blue-500/30 bg-blue-500/10 rounded-full text-blue-400 text-xs font-bold tracking-widest uppercase">
+                <div class="inline-flex items-center gap-2 px-3 py-1 mb-8 border border-blue-500/30 bg-blue-500/10 rounded-full text-blue-400 text-xs font-bold tracking-widest uppercase hover:bg-blue-500/20 transition-colors cursor-default">
                     <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
                     Sistemas Autônomos &bull; HealthTech
                 </div>
@@ -94,10 +113,10 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#projects" class="bg-brand-accent hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2 group">
+                    <a href="#projects" class="bg-brand-accent hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-xl shadow-blue-900/20 hover:shadow-blue-900/40 flex items-center justify-center gap-2 group hover:-translate-y-1">
                         Ver Projetos <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </a>
-                    <a href="https://github.com/bbanho" target="_blank" class="bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-lg font-bold text-lg backdrop-blur-sm transition-all flex items-center justify-center gap-2">
+                    <a href="https://github.com/bbanho" target="_blank" class="bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-lg font-bold text-lg backdrop-blur-sm transition-all flex items-center justify-center gap-2 hover:-translate-y-1">
                         <i class="fa-brands fa-github"></i> GitHub
                     </a>
                 </div>
@@ -105,46 +124,37 @@
 
             <!-- Abstract Visual -->
             <div class="md:w-2/5 w-full relative animate-fade-in-up" style="animation-delay: 0.2s;">
-                <div class="relative bg-gradient-to-tr from-slate-800 to-slate-900 rounded-2xl p-1 border border-slate-700 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                    <div class="bg-brand-primary rounded-xl overflow-hidden">
+                <div class="relative bg-gradient-to-tr from-slate-800 to-slate-900 rounded-2xl p-1 border border-slate-700 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500 group">
+                    <div class="bg-brand-primary rounded-xl overflow-hidden min-h-[220px]">
                         <div class="flex items-center px-4 py-3 bg-slate-800 border-b border-slate-700">
                             <div class="flex gap-2">
-                                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-red-500/50 group-hover:bg-red-500 transition-colors"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/50 group-hover:bg-yellow-500 transition-colors"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/50 group-hover:bg-green-500 transition-colors"></div>
                             </div>
                             <div class="ml-4 text-xs text-slate-400 font-mono">system_status.log</div>
                         </div>
-                        <div class="p-6 font-mono text-xs md:text-sm text-slate-300 space-y-3">
+                        <div class="p-6 font-mono text-xs md:text-sm text-slate-300 space-y-3" id="terminal-content">
+                            <!-- Injected via JS -->
                             <div class="flex justify-between border-b border-slate-800 pb-2">
                                 <span>UPTIME</span>
                                 <span class="text-green-400">99.9%</span>
                             </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-2">
-                                <span>MEMORY_INTEGRITY</span>
-                                <span class="text-blue-400">VERIFIED</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-2">
-                                <span>CORTICAL_STACK</span>
-                                <span class="text-purple-400">ACTIVE</span>
-                            </div>
-                            <div>
-                                <span class="text-slate-500">$</span> initiating_sequence...<br>
-                                <span class="text-slate-500">$</span> systems_operational<br>
-                                <span class="text-green-400">Ready.</span><span class="animate-pulse">_</span>
+                            <div class="mt-4">
+                                <span class="text-slate-500">$</span> <span id="typewriter"></span><span class="cursor-blink bg-blue-500 inline-block w-2 h-4 align-middle ml-1"></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Decorative Glow -->
-                <div class="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/20 blur-3xl rounded-full"></div>
+                <div class="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/20 blur-3xl rounded-full animate-pulse-slow"></div>
             </div>
         </div>
     </section>
 
     <!-- Active Operations (Projects) -->
     <section id="projects" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 reveal">
             <div class="text-center mb-16">
                 <span class="text-brand-accent font-bold tracking-widest uppercase text-sm block mb-3">Em Construção</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-brand-primary">Operações Ativas</h2>
@@ -152,7 +162,7 @@
 
             <div class="max-w-5xl mx-auto space-y-12">
                 <!-- Project: Intraclinica -->
-                <div class="group relative bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+                <div class="group relative bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 reveal">
                     <div class="absolute top-0 left-0 w-1 h-full bg-green-500 transition-all group-hover:w-2"></div>
                     <div class="p-8 md:p-10 flex flex-col md:flex-row gap-8 md:gap-12">
                         <div class="md:w-2/3">
@@ -165,10 +175,10 @@
                                 Migração de arquitetura legada para sistema reativo distribuído.
                             </p>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-mono font-medium rounded-md">Angular 17+</span>
-                                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-mono font-medium rounded-md">NgRx Store</span>
-                                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-mono font-medium rounded-md">NestJS</span>
-                                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-mono font-medium rounded-md">PostgreSQL</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-mono font-medium rounded-md hover:bg-slate-200 transition-colors cursor-default">Angular 17+</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-mono font-medium rounded-md hover:bg-slate-200 transition-colors cursor-default">NgRx Store</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-mono font-medium rounded-md hover:bg-slate-200 transition-colors cursor-default">NestJS</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-mono font-medium rounded-md hover:bg-slate-200 transition-colors cursor-default">PostgreSQL</span>
                             </div>
                         </div>
                         <div class="md:w-1/3 flex flex-col justify-center border-l border-slate-100 pl-0 md:pl-8 mt-6 md:mt-0 pt-6 md:pt-0 border-t md:border-t-0">
@@ -183,8 +193,8 @@
                 </div>
 
                 <!-- Project: Cortical Stack -->
-                <div class="group relative bg-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 text-white">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                <div class="group relative bg-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 text-white reveal">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-purple-500/20 transition-all duration-700"></div>
                     <div class="p-8 md:p-10 flex flex-col md:flex-row gap-8 md:gap-12 relative z-10">
                         <div class="md:w-2/3">
                             <div class="flex items-center gap-3 mb-4">
@@ -196,16 +206,16 @@
                                 Combina busca semântica (vetores) com armazenamento físico soberano, eliminando dependência de nuvem.
                             </p>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-slate-800 text-purple-200 text-xs font-mono font-medium rounded-md border border-purple-500/20">Qdrant Vector DB</span>
-                                <span class="px-3 py-1 bg-slate-800 text-purple-200 text-xs font-mono font-medium rounded-md border border-purple-500/20">Ollama Local</span>
-                                <span class="px-3 py-1 bg-slate-800 text-purple-200 text-xs font-mono font-medium rounded-md border border-purple-500/20">Markdown</span>
+                                <span class="px-3 py-1 bg-slate-800 text-purple-200 text-xs font-mono font-medium rounded-md border border-purple-500/20 hover:border-purple-500/50 transition-colors">Qdrant Vector DB</span>
+                                <span class="px-3 py-1 bg-slate-800 text-purple-200 text-xs font-mono font-medium rounded-md border border-purple-500/20 hover:border-purple-500/50 transition-colors">Ollama Local</span>
+                                <span class="px-3 py-1 bg-slate-800 text-purple-200 text-xs font-mono font-medium rounded-md border border-purple-500/20 hover:border-purple-500/50 transition-colors">Markdown</span>
                             </div>
                         </div>
                         <div class="md:w-1/3 flex items-center justify-center">
-                            <div class="text-center">
+                            <div class="text-center group-hover:scale-110 transition-transform duration-300">
                                 <div class="text-4xl font-bold text-white mb-1">262</div>
                                 <div class="text-xs uppercase tracking-widest text-slate-500">Pontos de Memória</div>
-                                <div class="mt-4 text-xs text-green-400 font-mono"><i class="fa-solid fa-circle text-[0.6rem] mr-1"></i> ONLINE</div>
+                                <div class="mt-4 text-xs text-green-400 font-mono"><i class="fa-solid fa-circle text-[0.6rem] mr-1 animate-pulse"></i> ONLINE</div>
                             </div>
                         </div>
                     </div>
@@ -216,25 +226,25 @@
 
     <!-- Lab / Philosophy -->
     <section id="lab" class="py-24 bg-slate-50 border-t border-slate-200">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center reveal">
             <div>
                 <h2 class="text-3xl font-bold text-brand-primary mb-6">O Laboratório</h2>
                 <p class="text-slate-600 text-lg mb-6 leading-relaxed">
                     Não acreditamos em software descartável. A Axiomatic Engineering opera sob princípios estritos de durabilidade e propriedade.
                 </p>
                 <div class="space-y-6">
-                    <div class="flex gap-4">
-                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-database text-brand-accent"></i>
+                    <div class="flex gap-4 group">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-brand-accent transition-colors">
+                            <i class="fa-solid fa-database text-brand-accent group-hover:scale-110 transition-transform"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-slate-900">Local-First</h4>
                             <p class="text-sm text-slate-600">Dados residem no dispositivo, sincronizam na nuvem. Se a internet cair, você continua trabalhando.</p>
                         </div>
                     </div>
-                    <div class="flex gap-4">
-                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-microchip text-brand-accent"></i>
+                    <div class="flex gap-4 group">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-brand-accent transition-colors">
+                            <i class="fa-solid fa-microchip text-brand-accent group-hover:scale-110 transition-transform"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-slate-900">Soberania de Hardware</h4>
@@ -246,10 +256,10 @@
             <div class="relative">
                 <!-- Code Snippet Decor -->
                 <div class="absolute -top-6 -left-6 w-24 h-24 bg-brand-accent/10 rounded-full blur-2xl"></div>
-                <div class="bg-brand-primary rounded-xl shadow-2xl p-6 font-mono text-sm text-slate-300 border border-slate-700 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                <div class="bg-brand-primary rounded-xl shadow-2xl p-6 font-mono text-sm text-slate-300 border border-slate-700 transform rotate-1 hover:rotate-0 transition-transform duration-500 hover:shadow-blue-500/10 hover:border-blue-500/30">
                     <div class="flex gap-2 mb-4">
-                        <div class="w-3 h-3 rounded-full bg-slate-600"></div>
-                        <div class="w-3 h-3 rounded-full bg-slate-600"></div>
+                        <div class="w-3 h-3 rounded-full bg-slate-600 hover:bg-red-500 transition-colors"></div>
+                        <div class="w-3 h-3 rounded-full bg-slate-600 hover:bg-yellow-500 transition-colors"></div>
                     </div>
                     <p><span class="text-purple-400">interface</span> <span class="text-yellow-300">Agent</span> {</p>
                     <p class="pl-4">id: <span class="text-blue-400">string</span>;</p>
@@ -273,8 +283,9 @@
                 Construindo no cruzamento entre biologia e silício.
             </p>
             <div class="flex justify-center gap-6 mb-12">
-                <a href="https://github.com/bbanho" class="hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
-                <a href="mailto:contato@axio.eng.br" class="hover:text-white transition-colors"><i class="fa-solid fa-envelope text-xl"></i></a>
+                <a href="https://github.com/bbanho" target="_blank" class="hover:text-white transition-colors transform hover:scale-110"><i class="fa-brands fa-github text-xl"></i></a>
+                <a href="mailto:contato@axio.eng.br" class="hover:text-white transition-colors transform hover:scale-110"><i class="fa-solid fa-envelope text-xl"></i></a>
+                <a href="https://www.linkedin.com/in/brunobanho/" target="_blank" class="hover:text-white transition-colors transform hover:scale-110"><i class="fa-brands fa-linkedin text-xl"></i></a>
             </div>
             <p class="text-xs font-mono opacity-50">
                 &copy; 2026 Axiomatic Engineering. All systems nominal.
@@ -282,5 +293,110 @@
         </div>
     </footer>
 
+    <!-- Interactive Scripts -->
+    <script>
+        // Terminal Typewriter Effect
+        const commands = [
+            { text: 'initiating_core_sequence...', delay: 50 },
+            { text: 'connecting_cortical_stack... [LINKED]', delay: 30 },
+            { text: 'verifying_integrity... [OK]', delay: 30 },
+            { text: 'system_ready.', delay: 100 }
+        ];
+        
+        const typeWriterElement = document.getElementById('typewriter');
+        let cmdIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            if (cmdIndex >= commands.length) return; // Stop after all commands
+            
+            const currentCmd = commands[cmdIndex];
+            
+            if (!isDeleting) {
+                typeWriterElement.innerHTML = currentCmd.text.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentCmd.text.length) {
+                    isDeleting = true;
+                    setTimeout(type, 1000); // Wait before clearing (or just go to next line)
+                } else {
+                    setTimeout(type, currentCmd.delay);
+                }
+            } else {
+                // Instead of deleting, let's stack them or just replace. 
+                // For a boot sequence, stacking is better.
+                // Let's modify logic to append lines.
+            }
+        }
+
+        // Simpler "Boot Sequence" Logic (Append lines)
+        const terminalContainer = document.getElementById('terminal-content');
+        
+        async function runBootSequence() {
+            // Clear initial static content if any (except UPTIME header)
+            const typeContainer = document.getElementById('typewriter').parentElement;
+            typeContainer.innerHTML = '<span class="text-slate-500">$</span> <span id="cursor" class="cursor-blink bg-blue-500 inline-block w-2 h-4 align-middle ml-1"></span>';
+            
+            const lines = [
+                { text: 'initiating_sequence...', color: 'text-slate-300' },
+                { text: 'loading_modules: [network, crypto, vector_db]', color: 'text-slate-400' },
+                { text: 'connecting_cortical_stack...', color: 'text-yellow-300' },
+                { text: 'integrity_check: PASSED', color: 'text-green-400' },
+                { text: 'system_operational.', color: 'text-blue-400' }
+            ];
+
+            for (const line of lines) {
+                // Type the line
+                await typeLine(line.text, line.color);
+                // Create new line
+                const newLine = document.createElement('div');
+                newLine.innerHTML = '<span class="text-slate-500">$</span> ';
+                terminalContainer.appendChild(newLine);
+                // Move cursor to new line
+                const cursor = document.getElementById('cursor');
+                newLine.appendChild(cursor);
+                // Scroll bottom
+                // terminalContainer.scrollTop = terminalContainer.scrollHeight;
+            }
+        }
+
+        function typeLine(text, colorClass) {
+            return new Promise(resolve => {
+                const cursor = document.getElementById('cursor');
+                const span = document.createElement('span');
+                span.className = colorClass;
+                cursor.parentNode.insertBefore(span, cursor);
+                
+                let i = 0;
+                function step() {
+                    span.textContent += text.charAt(i);
+                    i++;
+                    if (i < text.length) {
+                        setTimeout(step, 30 + Math.random() * 50);
+                    } else {
+                        setTimeout(resolve, 300);
+                    }
+                }
+                step();
+            });
+        }
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Start Boot
+        setTimeout(runBootSequence, 1000);
+
+    </script>
 </body>
 </html>
