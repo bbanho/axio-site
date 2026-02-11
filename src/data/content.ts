@@ -1,5 +1,27 @@
 export const researchArticles = [
   {
+    id: 'precedentes-engenharia',
+    title: 'Precedentes: A Memória que Resolve',
+    date: '11 FEV 2026',
+    description: 'Como transformamos erros de build em ativos de capital técnico através da indexação de precedentes semânticos.',
+    tags: ['Engineering', 'ROI'],
+    fullContent: `
+      <p>Para a maioria das empresas, a IA é uma ferramenta de consulta rápida. Na <strong>Axio Engineering</strong>, tratamos a memória da IA como um ativo de capital fixo.</p>
+      
+      <h3>O Valor do Precedente</h3>
+      <p>Imagine um engenheiro sênior resolvendo um erro às 3 da manhã. Na nossa arquitetura, essa solução torna-se um <strong>Precedente Semântico</strong>.</p>
+      
+      <h4>O Fluxo de Recuperação:</h4>
+      <ul>
+        <li><strong>O Problema Reincide:</strong> Uma nova atualização quebra o build semanas depois.</li>
+        <li><strong>A Resolução é Instantânea:</strong> O Cortex recupera o trecho exato de código e a lógica aplicada anteriormente via <em>recall</em> semântico.</li>
+      </ul>
+
+      <h3>Redução Drástica de MTTR</h3>
+      <p>Ao contratar a Axio, você adquire um sistema que <strong>acumula experiência técnica</strong>. Cada erro corrigido torna a infraestrutura mais resiliente. A inteligência é construída e retida sob sua soberania.</p>
+    `
+  },
+  {
     id: 'arquitetura-tri-tier',
     title: 'Arquitetura Tri-Tier: Memória Soberana',
     date: '11 FEV 2026',
@@ -85,7 +107,7 @@ export const researchArticles = [
     description: 'A relação entre entropia de dados, consumo de GPU e a estabilidade de sistemas autônomos locais.',
     tags: ['Hardware', 'Architecture'],
     fullContent: `
-      <p>Inteligência gera calor. Em nossa infraestrutura (GTX 1660 Super), observamos correlação direta entre o weaving semântico e a temperatura. Desenvolvemos um Watchdog Termodinâmico para garantir a sobrevivência do hardware.</p>
+      <p>Inteligência gera calor. Fisicamente. Em nossa infraestrutura (GTX 1660 Super), observamos correlação direta entre a complexidade do weaving semântico e a temperatura. Desenvolvemos um Watchdog Termodinâmico para garantir a sobrevivência do hardware.</p>
     `
   },
   {
@@ -119,7 +141,7 @@ export const projects = [
     type: 'R&D Interno',
     description: 'Infraestrutura proprietária de memória híbrida para agentes autônomos. Combina busca semântica (vetores) com armazenamento físico soberano, eliminando dependência de nuvem.',
     technologies: ['Qdrant Vector DB', 'Ollama Local', 'Markdown'],
-    memoryPoints: 274,
+    memoryPoints: 275,
     isDark: true
   }
 ];
