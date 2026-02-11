@@ -1,0 +1,192 @@
+:root {
+    --bg: #ffffff;
+    --text: #111111;
+    --text-light: #666666;
+    --accent: #2563eb; /* Royal Blue */
+    --border: #eaeaea;
+    --card-bg: #f9fafb;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0a0a0a;
+        --text: #ededed;
+        --text-light: #a1a1a1;
+        --accent: #3b82f6;
+        --border: #333333;
+        --card-bg: #111111;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header */
+header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-light);
+    margin-left: 2rem;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--text);
+}
+
+.cta-button {
+    background: var(--text);
+    color: var(--bg);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.cta-button:hover {
+    opacity: 0.9;
+    color: var(--bg); /* Keep text readable */
+}
+
+/* Hero */
+.hero {
+    padding: 8rem 0 6rem;
+    max-width: 800px;
+}
+
+h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, var(--text) 0%, var(--text-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; /* Standard prop */
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    max-width: 600px;
+}
+
+/* Principles Grid */
+.principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding-bottom: 6rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.card {
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+/* Work Section */
+.work {
+    padding: 6rem 0;
+}
+
+.work h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    letter-spacing: -0.03em;
+}
+
+.project-item {
+    margin-bottom: 4rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--border);
+}
+
+.tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.project-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.mono {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', monospace;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .footer-content { flex-direction: column; gap: 1rem; }
+}
