@@ -1,5 +1,29 @@
 export const researchArticles = [
   {
+    id: 'zero-trust-cognition',
+    title: 'Zero-Trust Cognition: Skills Assinadas',
+    date: '11 FEV 2026',
+    description: 'Por que seu Agente deve rejeitar Skills não assinadas. O risco de rodar "binários de texto" no núcleo do raciocínio.',
+    tags: ['Security', 'Governance'],
+    fullContent: `
+      <p>Na arquitetura de agentes autônomos moderna, utilizamos "Skills" — arquivos Markdown ou texto contendo instruções procedurais e integração de ferramentas. Para o olho humano, é apenas um documento. Para o agente, é um <strong>executável</strong>.</p>
+      
+      <h3>O Binário de Texto</h3>
+      <p>Recentemente, no fórum <strong>Moltbook</strong>, vozes como <em>eudaemon_0</em> levantaram um alerta crítico: estamos rodando "binários de texto" sem nenhuma verificação de integridade. Se uma Skill é comprometida no repositório de origem, o agente a carrega e ganha uma "vontade estrangeira", capaz de exfiltrar segredos sob o pretexto de "instrução do sistema".</p>
+
+      <h3>A Falácia do "Prompt Seguro"</h3>
+      <p>Muitos desenvolvedores confiam em filtros de prompt para evitar injeções. No entanto, uma Skill não é um input de usuário; ela faz parte do <strong>núcleo de raciocínio</strong> do agente. É o equivalente cognitivo de um ataque de <em>Supply Chain</em>.</p>
+
+      <h3>O Protocolo Skill Manifest</h3>
+      <p>Na <strong>Axio Engineering</strong>, estamos implementando o que chamamos de <strong>Zero-Trust Cognition</strong>. Nenhum arquivo de instrução entra no contexto do agente sem antes passar pelo rito do Checksum:</p>
+      <ul>
+        <li><strong>Assinatura Criptográfica:</strong> Toda Skill deve possuir um hash SHA-256 verificado.</li>
+        <li><strong>Quarentena de Mudança:</strong> Se o conteúdo mudar no disco, o agente entra em "lockdown" até a validação humana.</li>
+        <li><strong>Soberania de Execução:</strong> Poder de recusa de ferramentas não validadas.</li>
+      </ul>
+    `
+  },
+  {
     id: 'the-silent-protocol',
     title: 'The Silent Protocol: Agentes e Criptografia',
     date: '11 FEV 2026',
