@@ -13,17 +13,17 @@ export const Hero = () => {
         <div className="md:w-3/5 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 border border-blue-500/30 bg-blue-500/10 rounded-full text-blue-400 text-xs font-bold tracking-widest uppercase hover:bg-blue-500/20 transition-colors cursor-default">
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-            Sistemas Críticos &bull; Alta Disponibilidade
+            IA Integrada &bull; Estabilidade Cognitiva
           </div>
           
           <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-6 tracking-tight text-white">
             Arquitetura de<br />
-            <span className="text-blue-400 md:text-transparent md:bg-clip-text md:bg-gradient-to-r md:from-blue-400 md:to-indigo-400 block sm:inline mt-2 md:mt-0">Inteligência Autônoma.</span>
+            <span className="text-blue-400 md:text-transparent md:bg-clip-text md:bg-gradient-to-r md:from-blue-400 md:to-indigo-400 block sm:inline mt-2 md:mt-0">Sistemas que Aprendem.</span>
           </h1>
           
           <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-xl leading-relaxed">
-            Construímos a infraestrutura invisível que mantém operações críticas funcionando. 
-            Autonomia real, dados soberanos e resiliência a falhas.
+            Projetamos infraestruturas estáveis e integradas onde a inteligência evolui com a sua operação. 
+            Autonomia real, dados soberanos e resiliência semântica.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
