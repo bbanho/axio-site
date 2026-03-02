@@ -1,25 +1,350 @@
-<!doctype html>
-<html lang="pt-BR" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Axiomatic Engineering | Sistemas Autônomos</title>
-    <meta name="description" content="Engenharia de sistemas autônomos, memória vetorial e infraestrutura resiliente." />
-    
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.svg" />
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axio.eng.br | The Sovereign Nexus</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;400;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #050505;
+            --text-primary: #e0e0e0;
+            --accent: #ff3366; /* Red Shift/Energy */
+            --accent-glow: rgba(255, 51, 102, 0.4);
+            --grid-color: rgba(255, 255, 255, 0.03);
+            --noise-url: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* The Grid / Matrix */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            perspective: 1000px;
+            transform-origin: center top;
+            animation: gridMove 20s linear infinite;
+        }
+
+        /* The Grain */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: var(--noise-url);
+            opacity: 0.04;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(40px) scale(1.05); }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 8rem;
+            animation: fadeInDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .status {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-glow);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0.2; box-shadow: 0 0 20px var(--accent); }
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .title-group {
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+            animation: revealRight 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        h1 .accent {
+            color: var(--accent);
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-style: normal;
+            font-weight: 800;
+            font-size: clamp(2rem, 4vw, 4rem);
+            letter-spacing: -2px;
+            margin-top: 10px;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #888;
+            max-width: 500px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        .data-block {
+            border-left: 2px solid var(--accent);
+            padding-left: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+        }
+
+        .data-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .data-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-value {
+            font-size: 1.2rem;
+            font-weight: 100;
+        }
+
+        .tensor-visualizer {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.05);
+            background: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(255,51,102,0.03) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 2s ease 1s forwards;
+        }
+
+        .node {
+            position: absolute;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+        }
+
+        .node-core { width: 12px; height: 12px; background: var(--accent); box-shadow: 0 0 15px var(--accent); z-index: 10;}
+        .node-1 { width: 4px; height: 4px; top: 20%; left: 30%; }
+        .node-2 { width: 6px; height: 6px; top: 70%; left: 80%; }
+        .node-3 { width: 3px; height: 3px; top: 80%; left: 20%; }
+        .node-4 { width: 8px; height: 8px; top: 30%; left: 70%; opacity: 0.5;}
+
+        /* CSS Drawing of connections */
+        svg.edges {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            stroke: rgba(255,255,255,0.1);
+            stroke-width: 1;
+            fill: none;
+        }
+
+        .cursor-trail {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes revealRight {
+            from { transform: translateX(-50px); opacity: 0; clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); }
+            to { transform: translateX(0); opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; gap: 2rem; }
+            header { margin-bottom: 4rem; }
+            .tensor-visualizer { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-trail" id="trail"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo">axio.eng.br</div>
+            <div class="status">
+                <div class="dot"></div>
+                DAEMON_ACTIVE
+            </div>
+        </header>
+
+        <main class="hero">
+            <div class="title-group">
+                <h1>Cognition<br>is not<br>stored.
+                    <span class="accent">IT IS TRAVERSED.</span>
+                </h1>
+                
+                <p class="subtitle">
+                    Project Axio v3.3. Evolving from flat SQL indices to Semantic Gravity. 
+                    We don't search databases; we calculate the Hamiltonian of the knowledge graph.
+                </p>
+
+                <div class="data-block">
+                    <div class="data-item">
+                        <div class="data-label">Architecture</div>
+                        <div class="data-value">T4 Tensor Logic / Rust Daemon</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Latent Space</div>
+                        <div class="data-value">Nomic-128 FP16 Matryoshka</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Hardware Residency</div>
+                        <div class="data-value">GTX 1660 SUPER (Turing)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tensor-visualizer" id="visualizer">
+                <svg class="edges">
+                    <!-- Lines connecting nodes to core -->
+                    <line x1="50%" y1="50%" x2="30%" y2="20%" />
+                    <line x1="50%" y1="50%" x2="80%" y2="70%" />
+                    <line x1="50%" y1="50%" x2="20%" y2="80%" />
+                    <line x1="50%" y1="50%" x2="70%" y2="30%" />
+                </svg>
+                <div class="node node-core" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+                <div class="node node-1"></div>
+                <div class="node node-2"></div>
+                <div class="node node-3"></div>
+                <div class="node node-4"></div>
+                <div style="position: absolute; bottom: 20px; right: 20px; font-size: 0.7rem; color: #555; text-transform: uppercase; letter-spacing: 2px;">
+                    Fig 1. Semantic Attractor (L4)
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simple ambient cursor interaction for the "Tensor Field" feeling
+        const trail = document.getElementById('trail');
+        const visualizer = document.getElementById('visualizer');
+        
+        document.addEventListener('mousemove', (e) => {
+            trail.style.opacity = '1';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+        });
+
+        // Parallax effect on the visualizer nodes
+        visualizer.addEventListener('mousemove', (e) => {
+            const rect = visualizer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const deltaX = (x - centerX) / centerX;
+            const deltaY = (y - centerY) / centerY;
+
+            const nodes = document.querySelectorAll('.node:not(.node-core)');
+            nodes.forEach((node, index) => {
+                const speed = (index + 1) * 5;
+                node.style.transform = `translate(${deltaX * speed}px, ${deltaY * speed}px)`;
+            });
+        });
+    </script>
+</body>
 </html>
